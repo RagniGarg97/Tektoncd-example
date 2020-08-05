@@ -6,4 +6,4 @@ spec:
   type: image
   params:
     - name: url
-      value: index.docker.io/myrepository/leeroy-web
+      value: docker.io/raginigarg/myrepository           
