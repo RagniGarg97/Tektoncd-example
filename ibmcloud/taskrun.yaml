@@ -1,16 +1,16 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: build-docker-image
+  name: new-taskrun
 spec:
   serviceAccountName: tutorial-service
   taskRef:
-    name: build-image-task
+    name: new-task
   params:
     - name: pathToDockerFile
-      value: Dockerfile
-    - name: pathToContext
-      value: $(resources.inputs.docker-source.path)/examples/microservices/leeroy-web #configure: may change according to your source
+      value: images/ibm-cloud/Dockerfile
+      # - name: pathToContext
+      #value: /workspace/docker-source #$(resources.inputs.docker-source.path)/examples/microservices/leeroy-web #configure: may change according to your source
   resources:
     inputs:
       - name: docker-source
