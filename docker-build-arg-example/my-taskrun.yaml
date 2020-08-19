@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: my-taskrun
+spec:
+  serviceAccountName: tutorial-service
+  taskRef:
+    name: my-task
+  params:
+    - name: pathToDockerFile
+      value: images/Dockerfile2
+      # - name: pathToContext
+      #value: /workspace/docker-source #$(resources.inputs.docker-source.path)/examples/microservices/leeroy-web #configure: may change according to your source
+    - name: ubuntuVersion
+      value: "18.04"
+    - name: bazelVersion
+      value: "3.1.0"
+  resources:
+    inputs:
+      - name: docker-source
+        resourceRef:
+          name: power-git
+    outputs:
+      - name: builtImage
+        resourceRef:
+          name: power-image
+
