@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: docker-source-x86-ppc
+spec:
+  type: image
+  params:
+    - name: url
+      value: docker.io/raginigarg/myrepository  
