@@ -134,6 +134,26 @@ spec:
           name: skaffold-image-leeroy-web
 ```
 
+Examine the resources created:
+```
+# kubectl get tekton-pipelines
+
+NAME                                                 AGE
+task.tekton.dev/build-docker-image-from-git-source   72m
+
+
+NAME                                                                  SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+taskrun.tekton.dev/build-docker-image-from-git-source-task-run        True        Succeeded   72m         71m
+
+
+NAME                                                    AGE
+pipelineresource.tekton.dev/skaffold-git                5d
+pipelineresource.tekton.dev/skaffold-image-leeroy-web   150m
+```
+
+We can also confirm that the output Docker image has been created in the location specified in the resource definition.
+
+
 > In the above example we have created only one task (build-docker-image-from-git-source) and in order to run that task, we created a taskrun (build-docker-image-from-git-source-task-run).
 
 #### Create a Pipeline
