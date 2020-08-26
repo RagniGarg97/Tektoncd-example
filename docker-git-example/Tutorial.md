@@ -151,6 +151,14 @@ pipelineresource.tekton.dev/skaffold-git                5d
 pipelineresource.tekton.dev/skaffold-image-leeroy-web   150m
 ```
 
+```
+# kubectl get pods
+NAME                                                         READY   STATUS      RESTARTS   
+
+tutorial-pipeline-run-1-build-skaffold-web-8kggv-pod-clvqq   0/4     Completed   0          
+tutorial-pipeline-run-1-deploy-web-5sjc6-pod-l8dvn           0/3     Completed   0          
+```
+
 We can also confirm that the output Docker image has been created in the location specified in the resource definition.
 
 
@@ -314,3 +322,9 @@ STARTED      DURATION   STATUS
  ∙ tutorial-pipeline-run-1-build-skaffold-web-8kggv   build-skaffold-web   2 days ago   52 seconds   Succeeded
 ```
 
+```
+# kubectl get pods
+NAME                                                         READY   STATUS      RESTARTS   
+tutorial-pipeline-run-1-build-skaffold-web-8kggv-pod-clvqq   0/4     Completed   0          
+tutorial-pipeline-run-1-deploy-web-5sjc6-pod-l8dvn           0/3     Completed   0          
+```
