@@ -1,11 +1,7 @@
 # Kubeconfig Creator Task
 
 This `Task` do a similar job to the [Cluster](https://github.com/tektoncd/pipeline/blob/master/docs/resources.md#cluster-resource) 
-`PipelineResource` and
-are intended as its replacement. This is part of our plan to [offer replacement
-`tasks` for Pipeline Resources](https://github.com/tektoncd/catalog/issues/95)
-as well as
-[document those replacements](https://github.com/tektoncd/pipeline/issues/1369).
+`PipelineResource` 
 
 This task creates a [kubeconfig](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
 file that can be used to configure access to the different clusters.
@@ -23,7 +19,7 @@ This task provides users variety of ways to authenticate:
 ## Install the Task
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/v1beta1/kubeconfig-creator/kubeconfig-creator.yaml
+kubectl apply -f kubeconfig-creator.yaml
 ```
 
 ## Workspace
@@ -57,8 +53,7 @@ This will make your HTTPS connections insecure
 
 ## Usage
 
-This [example](../kubeconfig-creator/example) task uses a 
-`shared workspace` with [`PVC`](https://kubernetes.io/docs/concepts/storage/persistent-volumes) 
+This example uses a `shared workspace` with [`PVC`](https://kubernetes.io/docs/concepts/storage/persistent-volumes) 
 to store the `kubeconfig` in the `output` directory. 
 Kubeconfig file is stored at `/workspace/<workspace-name>/kubeconfig`.
 
@@ -84,7 +79,7 @@ params:
   - name: clientKeyData
     value: LS0tLS1C....
 ```
-[This](../kubeconfig-creator/example/pipeline.yaml) can be referred for the pipeline example.
+pipeline.yaml can be referred for the pipeline example.
 
 
 `Test-task` uses shared-workspace to fetch the kubeconfig file from the
@@ -118,8 +113,7 @@ spec:
    ```
 
  Finally, PipelineRun is used to execute the tasks in the pipeline and get the results.
- Reference for sample PipelineRun can be found [here](../kubeconfig-creator/example/pipelinerun.yaml).
- 
+  
 ***NOTE***
 
 - Since only one `authentication` technique is allowed per user, either a `token` or a `password` should be provided, if both are provided, the password will be ignored.
