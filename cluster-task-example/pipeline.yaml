@@ -1,0 +1,40 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: kubeconfig-test-pipeline
+spec:
+  workspaces:
+    - name: shared-workspace
+  tasks:
+    - name: kubeconfig-creator
+      taskRef:
+        name: kubeconfig-creator
+      workspaces:
+        - name: output
+          workspace: shared-workspace
+      params:
+        - name: name
+          value: ragni-tekton
+        - name: username
+          value: kubeadmin
+        - name: url
+          value: http://9.20.206.27/
+        - name: cadata
+          value: LS0tLS...
+        - name: clientKeyData
+          value: LS0tLS...
+        - name: clientCertificateData
+          value: LS0tLS..
+        - name: insecure
+          value: "true"  
+    - name: authentication-test
+      taskRef:
+        name: authentication-test
+      workspaces:
+        - name: input
+          workspace: shared-workspace
+      params:
+        - name: filename
+          value: kubeconfig
+      runAfter:
+        - kubeconfig-creator
